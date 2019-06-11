@@ -234,6 +234,10 @@ h1 {
   color: blue;
 }
 
+.fa-plus:hover {
+  cursor: pointer;
+}
+
 .fa-rating {
   font-size: 10vw !important;
 }

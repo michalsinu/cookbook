@@ -140,7 +140,7 @@ class recipes extends Component {
                 </div>
 
                 <div className="col-2">
-                  <span className="fa fa-add fa-plus"></span>
+                  <Link to="/addrecipe"><span className="fa fa-add fa-plus"></span></Link>
                 </div>
               </div>
             </div>
