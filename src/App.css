@@ -1,0 +1,270 @@
+
+@font-face {
+  font-family: Roboto;
+  src: url("./fonts/Roboto-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Roboto-Light;
+  src: url("./fonts/Roboto-Light.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Roboto-Bold;
+  src: url("./fonts/Roboto-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Roboto-Medium;
+  src: url("./fonts/Roboto-Medium.ttf");
+  font-weight: normal;
+}
+
+a {
+  color: #0000ff;
+}
+
+.error {
+  background-image: url('http://i.giphy.com/l117HrgEinjIA.gif');
+
+
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.error h1 {
+  font-size: 35vw;
+  margin-top: 10vh;
+}
+
+.error_content {
+  background-color:rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto-Bold, sans-serif;
+  color: #FFFFFF;
+  font-size: 16vw;
+  text-align: center;
+
+}
+
+.error_content a {
+  text-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
+}
+
+@media only screen and (min-width: 600px) {
+  .error h1 {
+    font-size: 15vw;
+  }
+
+  .error_content {
+    font-size: 5vw;
+  }
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.heading {
+  border-bottom: 2px #f1f1f1 solid;
+  margin-bottom: 20px;  padding-left: 25px;
+  -webkit-box-shadow: 0px 4px 4px -2px rgba(241,241,241,0.31);
+  -moz-box-shadow: 0px 4px 4px -2px rgba(241,241,241,0.31);
+  box-shadow: 0px 4px 4px -2px rgba(241,241,241,0.31);
+  padding: 10px;
+  padding-left: 5vw;
+  font-family: Roboto-Medium, sans-serif;
+  font-size: 6vw;
+}
+
+.content {
+  padding-left: 5vw;
+}
+
+.ackee_logo {
+  width: 75%;
+}
+
+.scoreImage {
+  width: 60%;
+}
+
+.clock {
+  width: 4vw;
+  margin-bottom: 2px;
+  margin-right: 5px;
+}
+
+
+.recipe_content {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.recipe_duration {
+  font-size: 4vw;
+}
+
+.recipe_name {
+  font-family: Roboto-Bold, sans-serif;
+  color: #0000ff;
+  font-size: 5vw;
+}
+
+.recipe_score {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 4vw;
+}
+
+.title_text {
+  color: #FFFFFF;
+  font-family: Roboto-Bold, sans-serif;
+  font-size: 7vw;
+  padding: 20px;
+  margin-top: 50%;
+}
+
+.title {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  background: url('assets/cake.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.56) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.56) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+  opacity: 0.7;
+}
+
+.info {
+  background-color: #ff00ff;
+  color: #FFFFFF;
+  padding: 20px;
+  font-size: 4vw;
+  font-family: Robot-Bold, sans-serif;
+}
+
+
+.ingredients {
+  padding: 5vw;
+}
+
+.checked {
+  color: #FFFFFF;
+}
+
+.notchecked {
+  color: #ff00ff;
+}
+
+.rating-notchecked {
+  color: #4d4dff;
+}
+
+.rating {
+  direction: rtl;
+}
+
+.rating h3 {}
+
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  color: #FFFFFF;
+   position: absolute;
+}
+
+.checkedpink {
+  color: #ff00ff;
+}
+
+.notcheckedgray {
+  color: #DDDDDD;
+}
+
+.fa {
+  margin-right: 7px;
+}
+
+.fa-bigger {
+  font-size: 4vw !important;
+}
+
+.fa-add {
+  font-size: 4vw !important;
+  color: blue;
+}
+
+.fa-rating {
+  font-size: 10vw !important;
+}
+
+.details, .ingredients, .description {
+  padding: 5vw;
+  font-family: Roboto-Medium, sans-serif;
+  color: #554d44;
+}
+
+.rating {
+  color: #FFFFFF;
+  font-family: Roboto-Medium, sans-serif;
+  background-color: blue;
+  min-height: 10vh;
+  margin-top: 8vw;
+  padding: 50px;
+  text-align: center;
+}
+
+.progress {
+  border-radius: 0rem !important;
+  height: 3px !important;
+}
+
+.loading {
+  background-color: #ff00ff !important;
+}
+
+.headings {
+  font-size: 20px;
+  color: #0000ff;
+  font-family: Roboto-Bold, sans-serif;
+}
