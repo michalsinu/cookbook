@@ -102,6 +102,33 @@ h1 {
   padding-left: 5vw;
 }
 
+.content-addrecipe {
+  padding: 5vw;
+}
+
+.input-addrecipe {
+  border-top: 0px solid #CCCCCC !important;
+  border-left: 0px solid #CCCCCC !important;
+  border-right: 0px solid #CCCCCC !important;
+
+  border-bottom: 1px solid #CCCCCC;
+  margin-bottom: 10vw;
+  border-radius: 0px;
+}
+
+.input-smallheading {
+  font-size: 1vw;
+  color: #333333;
+    visibility: hidden;
+}
+
+#input-addrecipe:focus {
+  -webkit-box-shadow: 0 0 0 0 rgba(0,123,255,.25) !important;
+  -moz-box-shadow: 0 0 0 0 rgba(0,123,255,.25) !important;
+  box-shadow: 0 0 0 0 rgba(0,123,255,.25) !important;
+  border-bottom: 1px solid blue !important;
+}
+
 .ackee_logo {
   width: 75%;
 }
