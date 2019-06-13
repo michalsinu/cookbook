@@ -113,20 +113,29 @@ h1 {
 
   border-bottom: 1px solid #CCCCCC;
   margin-bottom: 10vw;
-  border-radius: 0px;
+  border-radius: 0px !important;
 }
 
 .input-smallheading {
-  font-size: 1vw;
+  font-size: 3vw;
   color: #333333;
-    visibility: hidden;
 }
 
-#input-addrecipe:focus {
+.input-addrecipe:focus {
   -webkit-box-shadow: 0 0 0 0 rgba(0,123,255,.25) !important;
   -moz-box-shadow: 0 0 0 0 rgba(0,123,255,.25) !important;
   box-shadow: 0 0 0 0 rgba(0,123,255,.25) !important;
   border-bottom: 1px solid blue !important;
+}
+
+#add-ingredient-field {
+  background-color: #FFFFFF;
+  border: 2px solid #ff00ff;
+  color: #ff00ff;
+}
+
+.form-addrecipe {
+  margin-bottom: 20vw;
 }
 
 .ackee_logo {

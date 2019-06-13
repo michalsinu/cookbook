@@ -7,29 +7,70 @@ import { Link } from "react-router-dom";
 import Error from './error';
 
 class addRecipe extends Component {
+  constructor() {
+    super()
+    this.state = {
+      ingredientsFieldCounter: 1
+    }
+  }
+
   componentDidMount() {
     function setFocused(event) {
-      var results = document.querySelectorAll('.input-smallheading');
+      var inputsmallheading = document.createElement("div");
 
-        console.log("focused!" + event.target.placeholder);
+      inputsmallheading.className = "input-smallheading"
+      inputsmallheading.id = event.target.placeholder;
+      inputsmallheading.innerHTML = event.target.placeholder;
 
+      event.target.insertAdjacentElement("beforebegin", inputsmallheading)
     }
 
     function unsetFocused(event) {
-      var results = document.querySelectorAll('.input-smallheading');
-          console.log("unfocused" + event.target.placeholder);
+      var inputsmallheading = document.getElementById(event.target.placeholder);
+
+      inputsmallheading.remove();
+    }
+
+    var addIngredientFieldFunction = (event) => {
+      var addIngredientField = document.createElement("input");
+
+      addIngredientField.type = "text";
+      addIngredientField.className = "form-control input-addrecipe";
+      addIngredientField.id = this.state.ingredientsFieldCounter;
+      addIngredientField.style = "margin-bottom: 6vw";
+      addIngredientField.placeholder = "Vaše ingredience";
+
+      if (this.state.ingredientsFieldCounter==1) {
+        var firstIngredientField = document.getElementById(0);
+        firstIngredientField.insertAdjacentElement("afterend", addIngredientField);
+
+      } else {
+        var firstIngredientField = document.getElementById(this.state.ingredientsFieldCounter - 1);
+        firstIngredientField.insertAdjacentElement("afterend", addIngredientField);
+      }
+
+      this.setState({ingredientsFieldCounter: this.state.ingredientsFieldCounter + 1});
     }
 
     var results = document.getElementsByClassName('input-addrecipe');
 
       for (var i = 0; results.length > i; i++) {
-       results[i].addEventListener("focus", (e) => setFocused(e));
-       results[i].addEventListener("blur",  (e) => unsetFocused(e));
+       results[i].addEventListener("click", (e) => setFocused(e));
 
+       results[i].addEventListener("blur",  (e) => unsetFocused(e));
+       results[i].addEventListener("keyup",  (e) => { if(e.keycode===13) {unsetFocused(e)}});
      }
+
+     var addIngredientField = document.getElementById('add-ingredient-field');
+
+      addIngredientField.addEventListener("click", (e) => addIngredientFieldFunction(e));
   }
 
   render () {
+    var inputIngredientsStyle = {
+      marginBottom: '6vw'
+    }
+
     return (
     <React.Fragment>
       <div className="heading">
@@ -49,18 +90,37 @@ class addRecipe extends Component {
       </div>
 
       <div className="content-addrecipe">
-       <form>
+       <form className="form-addrecipe">
          <div className="form-group">
-          <div className="input-smallheading">Název receptu</div>
-          <input type="text" className="form-control input-addrecipe" placeholder="Název receptu" />
-        </div>
+            <input type="text" className="form-control input-addrecipe" id="nazev-receptu" placeholder="Název receptu" />
+         </div>
 
           <div className="form-group">
-            <div className="input-smallheading">Uvodní text</div>
-            <input type="text" className="form-control input-addrecipe" placeholder="Uvodní text" />
+            <input type="text" className="form-control input-addrecipe" id="uvodni-text" placeholder="Uvodní text" />
+          </div>
+        </form>
+
+        <div className="headings" style={{marginBottom: '5vw'}}>INGREDIENCE</div>
+
+        <form className="form-addrecipe">
+          <div className="form-group">
+             <input type="text" className="form-control input-addrecipe" id="0" style={inputIngredientsStyle} placeholder="Vaše ingredience" />
           </div>
 
-        </form>
+           <div className="form-group">
+             <button id="add-ingredient-field" className="btn"><span className="fa fa-plus"></span> PŘIDAT</button>
+           </div>
+         </form>
+
+         <form className="form-addrecipe">
+           <div className="form-group">
+              <input type="text" className="form-control input-addrecipe" id="postup" placeholder="Postup" />
+           </div>
+
+            <div className="form-group">
+              <input type="text" className="form-control input-addrecipe" id="cas" placeholder="Čas" />
+            </div>
+          </form>
       </div>
     </React.Fragment>
     );
