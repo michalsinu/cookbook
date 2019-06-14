@@ -21,6 +21,8 @@ export default function(state = initialState, action) {
       }
 
     case NEW_RECIPE:
+      console.log(action.payload);
+
       return {
         ...state
       }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
-import { fetchRecipes } from '../actions/recipesActions';
 import { Link } from "react-router-dom";
+import { addNewRecipe } from '../actions/recipesActions';
 
 import Error from './error';
 
@@ -10,8 +10,15 @@ class addRecipe extends Component {
   constructor() {
     super()
     this.state = {
-      ingredientsFieldCounter: 1
+      ingredientsFieldCounter: 1,
+      recipe_title: "",
+      recipe_content: "",
+      ingredients: [],
+      steps: "",
+      duration: ""
     }
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -28,7 +35,9 @@ class addRecipe extends Component {
     function unsetFocused(event) {
       var inputsmallheading = document.getElementById(event.target.placeholder);
 
-      inputsmallheading.remove();
+      if (inputsmallheading) {
+        inputsmallheading.remove();
+      }
     }
 
     var addIngredientFieldFunction = (event) => {
@@ -39,6 +48,7 @@ class addRecipe extends Component {
       addIngredientField.id = this.state.ingredientsFieldCounter;
       addIngredientField.style = "margin-bottom: 6vw";
       addIngredientField.placeholder = "Vaše ingredience";
+      addIngredientField.vlaue = this.state.ingredients[this.state.ingredientsFieldCounter];
 
       if (this.state.ingredientsFieldCounter==1) {
         var firstIngredientField = document.getElementById(0);
@@ -50,6 +60,12 @@ class addRecipe extends Component {
       }
 
       this.setState({ingredientsFieldCounter: this.state.ingredientsFieldCounter + 1});
+    }
+
+    var submitRecipe = (event) => {
+
+
+      this.props.addNewRecipe("", "", "", "", "");
     }
 
     var results = document.getElementsByClassName('input-addrecipe');
@@ -64,6 +80,17 @@ class addRecipe extends Component {
      var addIngredientField = document.getElementById('add-ingredient-field');
 
       addIngredientField.addEventListener("click", (e) => addIngredientFieldFunction(e));
+
+     var submit = document.getElementById('submit');
+
+      submit.addEventListener("click", (e) => submitRecipe(e));
+  }
+
+  handleChange(e) {
+    let value = e.target.value;
+    var id = e.target.id;
+
+    this.setState({[e.target.id]: value});
   }
 
   render () {
@@ -84,7 +111,7 @@ class addRecipe extends Component {
           </div>
 
           <div className="col-2">
-            <Link to="/addrecipe"><span className="fa fa-add fa-plus"></span></Link>
+            <span id="submit" className="fa fa-add fa-plus"></span>
           </div>
         </div>
       </div>
@@ -92,11 +119,11 @@ class addRecipe extends Component {
       <div className="content-addrecipe">
        <form className="form-addrecipe">
          <div className="form-group">
-            <input type="text" className="form-control input-addrecipe" id="nazev-receptu" placeholder="Název receptu" />
+            <input type="text" className="form-control input-addrecipe" id="recipe_title" onChange={this.handleChange} placeholder="Název receptu" value={this.state.recipe_title} />
          </div>
 
           <div className="form-group">
-            <input type="text" className="form-control input-addrecipe" id="uvodni-text" placeholder="Uvodní text" />
+            <input type="text" className="form-control input-addrecipe" id="recipe_content" placeholder="Uvodní text" onChange={this.handleChange} value={this.state.recipe_content} />
           </div>
         </form>
 
@@ -104,7 +131,7 @@ class addRecipe extends Component {
 
         <form className="form-addrecipe">
           <div className="form-group">
-             <input type="text" className="form-control input-addrecipe" id="0" style={inputIngredientsStyle} placeholder="Vaše ingredience" />
+             <input type="text" className="form-control input-addrecipe" id="0 ingredients" style={inputIngredientsStyle} placeholder="Vaše ingredience" onChange={this.handleChange} value={this.state.ingredients[0]} />
           </div>
 
            <div className="form-group">
@@ -114,11 +141,11 @@ class addRecipe extends Component {
 
          <form className="form-addrecipe">
            <div className="form-group">
-              <input type="text" className="form-control input-addrecipe" id="postup" placeholder="Postup" />
+              <input type="text" className="form-control input-addrecipe" id="steps" placeholder="Postup" onChange={this.handleChange} value={this.state.steps}/>
            </div>
 
             <div className="form-group">
-              <input type="text" className="form-control input-addrecipe" id="cas" placeholder="Čas" />
+              <input type="text" className="form-control input-addrecipe" id="duration" placeholder="Čas" onChange={this.handleChange} value={this.state.duration}/>
             </div>
           </form>
       </div>
@@ -129,4 +156,8 @@ class addRecipe extends Component {
   }
 }
 
-export default addRecipe;
+const mapStateToProps = state => ({
+  status: state.recipes.status
+});
+
+export default withRouter(connect(mapStateToProps, { addNewRecipe })(addRecipe));

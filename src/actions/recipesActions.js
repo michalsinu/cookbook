@@ -56,3 +56,10 @@ export const fetchRecipeDetails = (id) => dispatch => {
       }
     })
 }
+
+export const addNewRecipe = (recipe_title, recipe_content, ingredients, steps, duration) => dispatch => {
+  let url = 'https://cors-anywhere.herokuapp.com/https://cookbook.ack.ee/api/v1/recipes/';
+
+  dispatch({type: NEW_RECIPE, payload: "submit data"})
+
+}
