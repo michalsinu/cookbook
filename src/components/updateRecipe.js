@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { addNewRecipe } from '../actions/recipesActions';
 
-class addRecipe extends Component {
+class updateRecipe extends Component {
   constructor() {
     super()
     this.state = {
@@ -154,7 +153,7 @@ class addRecipe extends Component {
           </div>
 
           <div className="col-8">
-            Přidat recept
+            Upravit recept
           </div>
 
           <div className="col-2">
@@ -203,8 +202,4 @@ class addRecipe extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  status: state.recipes.status
-});
-
-export default withRouter(connect(mapStateToProps, { addNewRecipe })(addRecipe));
+export default updateRecipe;

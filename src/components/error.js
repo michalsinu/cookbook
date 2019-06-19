@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import createHistory from "history/createBrowserHistory"
+import createHistory from "history/createBrowserHistory";
+
+require("history").createBrowserHistory
 
 class error extends Component {
   render() {

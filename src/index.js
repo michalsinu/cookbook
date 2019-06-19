@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, HashRouter } from "react-router-dom";
 
 import RecipeDetails from './components/recipeDetails';
+import UpdateRecipe from './components/updateRecipe';
 import AddRecipe from './components/addRecipe';
 
 import './App.css';
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Switch>
          <Route exact path="/" component={App}/>
          <Route exact path="/recipe/:id" component={RecipeDetails} />
+         <Route exact path="/updaterecipe/:id" component={UpdateRecipe} />
          <Route exact path="/addrecipe" component={AddRecipe} />
         </Switch>
       </Router>
