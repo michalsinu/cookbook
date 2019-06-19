@@ -1,9 +1,8 @@
-A cookbook app created using React and Redux.
-Credit: [https://github.com/AckeeCZ/cookbook-web-task]
+A cookbook app created using React and Redux. <br />
+Credit: https://github.com/AckeeCZ/cookbook-web-task
 
 ## API & Server
-Documentation for the api can be found on [apiary][2] and the
-live server runs at this address [https://cookbook.ack.ee][3]
+live server runs at this address https://cookbook.ack.ee
 
 ## Designs
 
