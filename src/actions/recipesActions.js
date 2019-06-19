@@ -7,7 +7,7 @@ export const STATUS = 'STATUS';
 export const fetchRecipes = () => dispatch => {
     let statusCode, statusText;
 
-    fetch('https://cors-anywhere.herokuapp.com/https://cookbook.ack.ee/api/v1/recipes', {
+    fetch('https://cors-anywhere.herokuapp.com/https://private-anon-01fc0577b6-cookbook3.apiary-proxy.com/api/v1/recipes', {
       method: 'GET',
       body: null
     })
@@ -31,7 +31,7 @@ export const fetchRecipes = () => dispatch => {
 }
 
 export const fetchRecipeDetails = (id) => dispatch => {
-    let url = 'https://cors-anywhere.herokuapp.com/https://cookbook.ack.ee/api/v1/recipes/' + id;
+    let url = 'https://cors-anywhere.herokuapp.com/https://private-anon-01fc0577b6-cookbook3.apiary-proxy.com/api/v1/recipes/' + id;
 
     let statusCode, statusText;
 
@@ -58,8 +58,39 @@ export const fetchRecipeDetails = (id) => dispatch => {
 }
 
 export const addNewRecipe = (recipe_title, recipe_content, ingredients, steps, duration) => dispatch => {
-  let url = 'https://cors-anywhere.herokuapp.com/https://cookbook.ack.ee/api/v1/recipes/';
+  let url = 'https://cors-anywhere.herokuapp.com/https://private-anon-01fc0577b6-cookbook3.apiary-mock.com/api/v1/recipes';
 
-  dispatch({type: NEW_RECIPE, payload: "submit data"})
+  let statusCode, statusText, json;
 
+  json = {
+    'name': recipe_title,
+    'description': steps,
+    'ingredients': ingredients,
+    'duration': duration,
+    'info': recipe_content
+  }
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(json)
+  })
+  .then(results => {
+    statusCode = results.status;
+    statusText = results.statusText;
+
+    dispatch({type: STATUS, payload: "adding", code: "", text: "recipe"})
+
+    return results.json();
+  })
+  .then(data => {
+    if (statusCode===200) {
+      dispatch({type: STATUS, payload: "added", code: statusCode, text: statusText})
+      dispatch({type: NEW_RECIPE, payload: data})
+    } else {
+      dispatch({type: STATUS, payload: "error", code: statusCode, text: statusText})
+    }
+  })
 }

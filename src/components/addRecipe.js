@@ -47,8 +47,6 @@ class addRecipe extends Component {
       addIngredientField.className = "form-control input-addrecipe";
       addIngredientField.id = this.state.ingredientsFieldCounter;
       addIngredientField.style = "margin-bottom: 6vw";
-      addIngredientField.placeholder = "Vaše ingredience";
-      addIngredientField.vlaue = this.state.ingredients[this.state.ingredientsFieldCounter];
 
       if (this.state.ingredientsFieldCounter==1) {
         var firstIngredientField = document.getElementById(0);
@@ -63,9 +61,60 @@ class addRecipe extends Component {
     }
 
     var submitRecipe = (event) => {
+      let errors = [], title, content, ingredients, ingredientsTemp = [], ingredientsCounter, steps, duration;
 
+      title = this.state.recipe_title.toLowerCase();
+      content = this.state.recipe_content;
+      steps = this.state.steps;
+      duration = this.state.duration;
+      ingredientsCounter = this.state.ingredientsFieldCounter;
+      ingredients = this.state.ingredients;
 
-      this.props.addNewRecipe("", "", "", "", "");
+      for(var i = 0; ingredientsCounter > i; i++) {
+        var fields = document.getElementById(i);
+
+        ingredientsTemp[i] = fields.value;
+
+        this.setState({ingredients: ingredientsTemp});
+      }
+
+      if (title==="") {
+        errors.push("Nazev receptu je prazdny");
+      }
+
+      if (!title.includes("akcee")) {
+        errors.push("Nazev musi obsahovat slovo Akcee");
+      }
+
+      if (content==="") {
+        errors.push("Uvodni text je prazdny");
+      }
+
+      if (ingredientsTemp.length<1) {
+        errors.push("Ingredience jsou prazdne");
+      }
+
+      if (steps==="") {
+        errors.push("Postup je prazdny");
+      }
+
+      if (duration==="") {
+        errors.push("Cas je prazdny");
+      }
+
+      var hasDigit = /\d/;
+
+      if (!hasDigit.test(duration)) {
+        errors.push("Cas neni spravny");
+      }
+
+      if (errors.length > 0) {
+        errors.map(error => {
+          alert(error);
+        });
+      } else {
+        this.props.addNewRecipe(title, content, ingredientsTemp, steps, duration);
+      }
     }
 
     var results = document.getElementsByClassName('input-addrecipe');
@@ -131,7 +180,7 @@ class addRecipe extends Component {
 
         <form className="form-addrecipe">
           <div className="form-group">
-             <input type="text" className="form-control input-addrecipe" id="0 ingredients" style={inputIngredientsStyle} placeholder="Vaše ingredience" onChange={this.handleChange} value={this.state.ingredients[0]} />
+              <input type="text" id="0" className="form-control input-addrecipe" style={inputIngredientsStyle} placeholder="Vaše ingredience" />
           </div>
 
            <div className="form-group">
