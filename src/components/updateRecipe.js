@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import { fetchRecipeDetails } from '../actions/recipesActions';
 
 class updateRecipe extends Component {
   constructor() {
@@ -18,7 +19,15 @@ class updateRecipe extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentWillMount() {
+    const {id} = this.props.match.params
+
+    this.props.fetchRecipeDetails(id);
+  }
+
   componentDidMount() {
+
+
     function setFocused(event) {
       var inputsmallheading = document.createElement("div");
 
@@ -117,7 +126,7 @@ class updateRecipe extends Component {
     var results = document.getElementsByClassName('input-addrecipe');
 
       for (var i = 0; results.length > i; i++) {
-       results[i].addEventListener("click", (e) => setFocused(e));
+       results[i].addEventListener("focus", (e) => setFocused(e));
 
        results[i].addEventListener("blur",  (e) => unsetFocused(e));
        results[i].addEventListener("keyup",  (e) => { if(e.keycode===13) {unsetFocused(e)}});
@@ -125,11 +134,15 @@ class updateRecipe extends Component {
 
      var addIngredientField = document.getElementById('add-ingredient-field');
 
+     if (addIngredientField) {
       addIngredientField.addEventListener("click", (e) => addIngredientFieldFunction(e));
+     }
 
      var submit = document.getElementById('submit');
 
+     if(submit) {
       submit.addEventListener("click", (e) => submitRecipe(e));
+     }
   }
 
   handleChange(e) {
@@ -140,66 +153,77 @@ class updateRecipe extends Component {
   }
 
   render () {
-    var inputIngredientsStyle = {
-      marginBottom: '6vw'
-    }
 
-    return (
-    <React.Fragment>
-      <div className="heading">
-        <div className="container-fluid row">
-          <div className="col-2">
-            <Link to="/"><span className="fa fa-add fa-arrow-left"></span></Link>
-          </div>
+    if (this.props.status.code===200 && this.props.details) {
+      console.log(this.props.details.ingredients)
 
-          <div className="col-8">
-            Upravit recept
-          </div>
+      var inputIngredientsStyle = {
+        marginBottom: '6vw'
+      }
 
-          <div className="col-2">
-            <span id="submit" className="fa fa-add fa-plus"></span>
+      return (
+      <React.Fragment>
+        <div className="heading">
+          <div className="container-fluid row">
+            <div className="col-2">
+              <Link to="/"><span className="fa fa-add fa-arrow-left"></span></Link>
+            </div>
+
+            <div className="col-8">
+              Upravit recept
+            </div>
+
+            <div className="col-2">
+              <span id="submit" className="fa fa-add fa-plus"></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="content-addrecipe">
-       <form className="form-addrecipe">
-         <div className="form-group">
-            <input type="text" className="form-control input-addrecipe" id="recipe_title" onChange={this.handleChange} placeholder="Název receptu" value={this.state.recipe_title} />
-         </div>
-
-          <div className="form-group">
-            <input type="text" className="form-control input-addrecipe" id="recipe_content" placeholder="Uvodní text" onChange={this.handleChange} value={this.state.recipe_content} />
-          </div>
-        </form>
-
-        <div className="headings" style={{marginBottom: '5vw'}}>INGREDIENCE</div>
-
-        <form className="form-addrecipe">
-          <div className="form-group">
-              <input type="text" id="0" className="form-control input-addrecipe" style={inputIngredientsStyle} placeholder="Vaše ingredience" />
-          </div>
-
-           <div className="form-group">
-             <button id="add-ingredient-field" className="btn"><span className="fa fa-plus"></span> PŘIDAT</button>
-           </div>
-         </form>
-
+        <div className="content-addrecipe">
          <form className="form-addrecipe">
            <div className="form-group">
-              <input type="text" className="form-control input-addrecipe" id="steps" placeholder="Postup" onChange={this.handleChange} value={this.state.steps}/>
+              <input type="text" className="form-control input-addrecipe" id="recipe_title" onChange={this.handleChange} placeholder={this.props.details.name} value={this.state.recipe_title} />
            </div>
 
             <div className="form-group">
-              <input type="text" className="form-control input-addrecipe" id="duration" placeholder="Čas" onChange={this.handleChange} value={this.state.duration}/>
+              <input type="text" className="form-control input-addrecipe" id="recipe_content" placeholder={this.props.details.info} onChange={this.handleChange} value={this.state.recipe_content} />
             </div>
           </form>
-      </div>
-    </React.Fragment>
-    );
 
+          <div className="headings" style={{marginBottom: '5vw'}}>INGREDIENCE</div>
 
+          <form className="form-addrecipe">
+            <div className="form-group">
+                <input type="text" id="0" className="form-control input-addrecipe" style={inputIngredientsStyle} placeholder="Vaše ingredience" />
+            </div>
+
+             <div className="form-group">
+               <button id="add-ingredient-field" className="btn"><span className="fa fa-plus"></span> PŘIDAT</button>
+             </div>
+           </form>
+
+           <form className="form-addrecipe">
+             <div className="form-group">
+                <input type="text" className="form-control input-addrecipe" id="steps" placeholder={this.props.details.description} onChange={this.handleChange} value={this.state.steps}/>
+             </div>
+
+              <div className="form-group">
+                <input type="text" className="form-control input-addrecipe" id="duration" placeholder={this.props.details.duration} onChange={this.handleChange} value={this.state.duration}/>
+              </div>
+            </form>
+        </div>
+      </React.Fragment>
+      );
+  } else {
+    return (<p>Fetching...</p>);
   }
 }
+}
 
-export default updateRecipe;
+const mapStateToProps = state => ({
+  details: state.recipes.details,
+  status: state.recipes.status
+});
+
+export default withRouter(connect(mapStateToProps, { fetchRecipeDetails })(updateRecipe));
+

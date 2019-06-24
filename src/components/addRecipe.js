@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { addNewRecipe } from '../actions/recipesActions';
 
+import check from '../assets/check.png';
+
 class addRecipe extends Component {
   constructor() {
     super()
@@ -118,7 +120,7 @@ class addRecipe extends Component {
     var results = document.getElementsByClassName('input-addrecipe');
 
       for (var i = 0; results.length > i; i++) {
-       results[i].addEventListener("click", (e) => setFocused(e));
+       results[i].addEventListener("focus", (e) => setFocused(e));
 
        results[i].addEventListener("blur",  (e) => unsetFocused(e));
        results[i].addEventListener("keyup",  (e) => { if(e.keycode===13) {unsetFocused(e)}});
@@ -126,11 +128,15 @@ class addRecipe extends Component {
 
      var addIngredientField = document.getElementById('add-ingredient-field');
 
+     if (addIngredientField) {
       addIngredientField.addEventListener("click", (e) => addIngredientFieldFunction(e));
+     }
 
      var submit = document.getElementById('submit');
 
+     if(submit) {
       submit.addEventListener("click", (e) => submitRecipe(e));
+     }
   }
 
   handleChange(e) {
@@ -143,6 +149,14 @@ class addRecipe extends Component {
   render () {
     var inputIngredientsStyle = {
       marginBottom: '6vw'
+    }
+
+    function redirectToHome() {
+
+    }
+
+    if (this.props.status.code===200) {
+      window.location.href = "/"
     }
 
     return (

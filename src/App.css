@@ -98,6 +98,12 @@ h1 {
   font-size: 6vw;
 }
 
+.check {
+    margin: auto;
+  width: 30%;
+  text-align: center;
+}
+
 .content {
   padding-left: 5vw;
 }
