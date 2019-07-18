@@ -21,15 +21,6 @@ class recipeDetails extends Component {
   }
 
   score() {
-    <div className="row rating">
-        <h3>Ratuj tento recept</h3> <br /><br />
-
-        <span id="rating" onClick={() => this.rating("5")} className="fa fa-star fa-rating rating-notchecked"></span>
-        <span id="rating" onClick={() => this.rating("4")} className="fa fa-star fa-rating rating-notchecked"></span>
-        <span id="rating" onClick={() => this.rating("3")} className="fa fa-star fa-rating rating-notchecked"></span>
-        <span id="rating" onClick={() => this.rating("2")} className="fa fa-star fa-rating rating-notchecked"></span>
-        <span id="rating" onClick={() => this.rating("1")} className="fa fa-star fa-rating rating-notchecked"></span>
-    </div>
   }
 
   switchScore(score){
