@@ -1,7 +1,7 @@
 export const STATUS_RATING = 'STATUS_RATING';
 
 export const addRating = (id, rating, initialRating) => dispatch => {
-  let url = 'https://cors-anywhere.herokuapp.com/https://cookbook.ack.ee/api/v1/recipes/'+ id +'/ratings';
+  let url = 'https://my-json-server.typicode.com/AckeeCZ/web-task-cookbook-fake-api/recipes/'+ id +'/ratings';
   let score = parseInt(rating, 10);
   let statusCode, statusText;
 
