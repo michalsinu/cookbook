@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^5.1.0",
     "font-awesome": "^4.7.0",
-    "history": "^4.7.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-redux": "^5.0.7",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
+    "history": "^5.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "1.1.5",
-    "redux": "^4.0.0",
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
     "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^5.1.1",
+    "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -25,6 +25,18 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.3.1"
+    "@fortawesome/fontawesome-free": "^5.15.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
