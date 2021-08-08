@@ -31,7 +31,7 @@ export const fetchRecipes = () => dispatch => {
 }
 
 export const fetchRecipeDetails = (id) => dispatch => {
-    let url = 'https://my-json-server.typicode.com/AckeeCZ/web-task-cookbook-fake-api/recipes/' + id;
+    let url = 'https://my-json-server.typicode.com/AckeeCZ/web-task-cookbook-fake-api/recipe-details/' + id;
 
     let statusCode, statusText;
 

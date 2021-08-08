@@ -151,13 +151,6 @@ class addRecipe extends Component {
       marginBottom: '6vw'
     }
 
-    function redirectToHome() {
-
-    }
-
-    if (this.props.status.code===200) {
-      window.location.href = "/"
-    }
 
     return (
     <React.Fragment>
