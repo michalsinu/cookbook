@@ -231,18 +231,17 @@ h1 {
 }
 
 .notchecked {
-  color: #ff00ff;
+  color: #dad7da;
 }
 
 .rating-notchecked {
   color: #4d4dff;
 }
 
-.rating {
-  direction: rtl;
-}
 
-.rating h3 {}
+.rating h3 {
+  font-size: 5vw;
+}
 
 .rating > span {
   display: inline-block;
@@ -268,11 +267,11 @@ h1 {
 }
 
 .fa-bigger {
-  font-size: 4vw !important;
+  font-size: 5vw !important;
 }
 
 .fa-add {
-  font-size: 4vw !important;
+  font-size: 5vw !important;
   color: blue;
 }
 

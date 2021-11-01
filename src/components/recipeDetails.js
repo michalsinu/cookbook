@@ -8,6 +8,13 @@ import Error from './error'
 import clock from '../assets/clock_details.png';
 
 class recipeDetails extends Component {
+  constructor() {
+    super()
+    this.state = {}
+
+    this.handleScoreChange = this.handleScoreChange.bind(this)
+  }
+
   componentDidMount () {
     const {id} = this.props.match.params
 
@@ -28,7 +35,11 @@ class recipeDetails extends Component {
         case 0:
           return (
             <div>
-              No score yet!
+              <span className="fa fa-star fa-bigger notchecked"></span>
+              <span className="fa fa-star fa-bigger notchecked"></span>
+              <span className="fa fa-star fa-bigger notchecked"></span>
+              <span className="fa fa-star fa-bigger notchecked"></span>
+              <span className="fa fa-star fa-bigger notchecked"></span>
             </div>
           );
 
@@ -104,6 +115,16 @@ class recipeDetails extends Component {
     }
   }
 
+  
+  handleScoreChange(e) {
+    var id = e.target.id;
+
+    this.setState({'rated': id});
+
+    this.rating(this.state.rated)
+    console.log(this.state)
+  }
+
   render() {
       if (this.props.status.code===200 && this.props.details.id) {
         return (
@@ -141,6 +162,20 @@ class recipeDetails extends Component {
 
               <div className="row description">
                   {this.props.details.description}
+              </div>
+            </div>
+
+            <div className="row rating">
+              <h3>Ohodnot' tento recept</h3>
+
+              <div>
+                <form>
+                  <span className="fa fa-star fa-bigger notcheckedgray" onClick={this.handleScoreChange} id="1"></span>
+                  <span className="fa fa-star fa-bigger notcheckedgray" onClick={this.handleScoreChange} id="2"></span>
+                  <span className="fa fa-star fa-bigger notcheckedgray" onClick={this.handleScoreChange} id="3"></span>
+                  <span className="fa fa-star fa-bigger notcheckedgray" onClick={this.handleScoreChange} id="4"></span>
+                  <span className="fa fa-star fa-bigger notcheckedgray" onClick={this.handleScoreChange} id="5"></span>
+                </form>
               </div>
             </div>
 
